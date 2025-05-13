@@ -1,5 +1,5 @@
 export interface Paciente{
-    codigo:number
+    codigo?:number
     cedula:string
     nombres:string
     fechaNacimiento:string
