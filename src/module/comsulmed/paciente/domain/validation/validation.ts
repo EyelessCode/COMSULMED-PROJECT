@@ -1,19 +1,23 @@
-import { PacienteIdNegative, PacienteUnnamed } from "./util/paciente.validation";
+import { PacienteAgeNegative, PacienteIdNegative, PacienteUnnamed } from "./util/paciente.validation";
 
-function codigoNegativo(codigo:number) {
-    if (codigo<=0) {
+function codigoAndEdadNegativo(codigoAndEdad:number) {
+    if (codigoAndEdad<=0) {
         throw new PacienteIdNegative(`El ID/Código no puede ser negativo!`)
+    }
+
+    if (codigoAndEdad<=0) {
+        throw new PacienteAgeNegative(`La Edad no puede ser negativo!`)
     }
 }
 
-function nombreVacioAndMayor(nombres:string) {
-    if (nombres.length<=0||!nombres||nombres.trim()==='') {
+function nombreAndApellidoValidator(nombresAndApellidos:string) {
+    if (nombresAndApellidos.length<=0||!nombresAndApellidos||nombresAndApellidos.trim()==='') {
         throw new PacienteUnnamed(`El nombre no puede estar vacío!`)
     }
 
-    if (nombres.length>30) {
+    if (nombresAndApellidos.length>30) {
         throw new PacienteUnnamed(`El nombre no puede exceder los 30 caracteres!`)
     }
 }
 
-export {codigoNegativo,nombreVacioAndMayor}
+export {codigoAndEdadNegativo,nombreAndApellidoValidator}
