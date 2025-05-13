@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../src/shared/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model usuario {
+  codigo Int @id @default(autoincrement())
+}
+
+model centroMedico {
+  codigo    Int          @id @default(autoincrement())
+  nombre    String
+  direccion String
+  telefono  String
+  RUC       String       @unique
+  tomas     tomaSignos[]
+}
+
+model paciente {
+  codigo          Int          @id @default(autoincrement())
+  cedula          String       @unique
+  nombres         String
+  fechaNacimiento String
+  apellidos       String
+  edad            Int
+  genero          String
+  telefono        String
+  tipoSangre      String
+  direccion       String?      @default("")
+  correo          String       @unique
+  ocupacion       String?      @default("ninguno")
+  tomas           tomaSignos[]
+}
+
+model enfermera {
+  codigo       Int          @id @default(autoincrement())
+  cedula       String       @unique
+  nombres      String
+  apellidos    String
+  correo       String       @unique
+  especialidad String
+  tomas        tomaSignos[]
+}
+
+model tipoSignos {
+  codigo         Int               @id @default(autoincrement())
+  descripcion    String
+  unidad         String
+  valorMinimo    Float
+  valorMaximo    Float
+  signosPaciente signosPacientes[]
+}
+
+model tomaSignos {
+  numero         Int               @id @default(autoincrement())
+  fecha          String
+  centroMedicoId Int
+  pacienteId     Int
+  enfermeraId    Int
+  observacion    String
+  centroMedico   centroMedico      @relation(fields: [centroMedicoId], references: [codigo])
+  paciente       paciente          @relation(fields: [pacienteId], references: [codigo])
+  enfermera      enfermera         @relation(fields: [enfermeraId], references: [codigo])
+  signosPaciente signosPacientes[]
+}
+
+model signosPacientes {
+  linea        Int        @id @default(autoincrement())
+  valor        Float
+  tipoSignoId  Int
+  tomaSignosId Int
+  fecha        String
+  comentario   String?    @default("")
+  tipoSigno    tipoSignos @relation(fields: [tipoSignoId], references: [codigo])
+  tomaSignos   tomaSignos @relation(fields: [tomaSignosId], references: [numero])
+}
