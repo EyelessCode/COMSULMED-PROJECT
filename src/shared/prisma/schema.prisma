@@ -14,10 +14,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model usuario {
-  codigo Int @id @default(autoincrement())
-}
-
 model centroMedico {
   codigo    Int          @id @default(autoincrement())
   nombre    String
