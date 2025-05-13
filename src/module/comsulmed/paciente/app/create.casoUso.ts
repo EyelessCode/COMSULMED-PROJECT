@@ -19,6 +19,6 @@ export class CasoUsoCreatePaciente{
             genero,telefono,tipoSangre,direccion,correo,ocupacion
         }
 
-        return this.repositorio.create(paciente)
+        return await this.repositorio.create(paciente)
     }
 }
