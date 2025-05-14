@@ -1,14 +1,9 @@
-import { PacienteAgeNegative, PacienteDate, PacienteDocument, PacienteIdNegative, PacienteUnnamed } from "./util/paciente.validation";
+import { PacienteDate, PacienteDocument, PacienteGenre, PacienteNegativeNumber, PacienteUnnamed } from "./util/paciente.validation";
 
 function codigoAndEdadNegativo(codigoAndEdad:number):any {
     if (codigoAndEdad<=0) {
-        throw new PacienteIdNegative(`El ID/Código no puede ser negativo!`)
+        throw new PacienteNegativeNumber(`El dígito no puede ser negativo!`)
     }
-
-    if (codigoAndEdad<=0) {
-        throw new PacienteAgeNegative(`La Edad no puede ser negativo!`)
-    }
-
 }
 
 function nombreApellidoAndCedulaValidator(nombresAndApellidos:string):any {
@@ -23,7 +18,6 @@ function nombreApellidoAndCedulaValidator(nombresAndApellidos:string):any {
     if (nombresAndApellidos.length===10) {
         throw new PacienteDocument(`La cédula tiene que tener 10 dígitos!`)
     }
-
 }
 
 function fechaNoFutura(fecha:string):any {
@@ -36,7 +30,14 @@ function fechaNoFutura(fecha:string):any {
     if (f>hoy) {
         throw new PacienteDate(`La fecha no puede ser futura`)
     }
-
 }
 
-export {codigoAndEdadNegativo,nombreApellidoAndCedulaValidator,fechaNoFutura}
+function generoValido(genero:string) {
+    if (genero!=="masculino"||"femenino"||"MASCULINO"||"FEMENINO") {
+        throw new PacienteGenre(`El género ingresado es inválido!`)
+    }
+}
+
+export {codigoAndEdadNegativo,nombreApellidoAndCedulaValidator,fechaNoFutura,
+    generoValido
+}
