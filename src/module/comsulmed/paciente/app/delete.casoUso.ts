@@ -2,7 +2,7 @@ import { IRepositorioPaciente } from "../domain/interface/repository/repositoryP
 import { PacienteNotFound } from "../domain/validation/util/paciente.validation";
 import { codigoAndEdadNegativo } from "../domain/validation/validation";
 
-export class CasoUsoEditPaciente{
+export class CasoUsoDeletePaciente{
     constructor(private repositorio:IRepositorioPaciente){}
 
     async run(codigo:number):Promise<void>{
