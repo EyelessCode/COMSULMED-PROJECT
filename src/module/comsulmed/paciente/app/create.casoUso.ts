@@ -1,5 +1,6 @@
 import { IRepositorioPaciente } from "../domain/interface/repository/repositoryPaciente.interface";
-import { codigoAndEdadNegativo, fechaNoFutura, nombreApellidoAndCedulaValidator } from "../domain/validation/validation";
+import { cedulaValido, codigoAndEdadNegativo, correoValido, dirrecionValido, fechaNoFutura, generoValido,
+    nombreApellidoAndCedulaValidator, ocupacionValida, telefonoValido, tipoSangreValido } from "../domain/validation/validation";
 
 export class CasoUsoCreatePaciente{
     constructor(private repositorio:IRepositorioPaciente){}
@@ -11,12 +12,17 @@ export class CasoUsoCreatePaciente{
     ):Promise<void>{
         const paciente={
             codigo:codigoAndEdadNegativo(codigo),
-            cedula:nombreApellidoAndCedulaValidator(cedula),
+            cedula:cedulaValido(cedula),
             nombres:nombreApellidoAndCedulaValidator(nombres),
             fechaNacimiento:fechaNoFutura(fechaNacimiento),
             apellidos:nombreApellidoAndCedulaValidator(apellidos),
             edad:codigoAndEdadNegativo(edad),
-            genero,telefono,tipoSangre,direccion,correo,ocupacion
+            genero:generoValido(genero),
+            telefono:telefonoValido(telefono),
+            tipoSangre:tipoSangreValido(tipoSangre),
+            direccion:dirrecionValido(direccion),
+            correo:correoValido(correo),
+            ocupacion:ocupacionValida(ocupacion)
         }
 
         return await this.repositorio.create(paciente)
