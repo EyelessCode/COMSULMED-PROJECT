@@ -16,3 +16,5 @@ function mapToDomain(objeto:any):Paciente {
         ocupacion:objeto.ocupacion
     }
 }
+
+export{mapToDomain}
