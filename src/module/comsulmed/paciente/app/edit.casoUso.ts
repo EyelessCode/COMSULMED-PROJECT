@@ -1,6 +1,7 @@
 import { IRepositorioPaciente } from "../domain/interface/repository/repositoryPaciente.interface";
 import { PacienteNotFound } from "../domain/validation/util/paciente.validation";
-import { codigoAndEdadNegativo, nombreApellidoAndCedulaValidator, fechaNoFutura, generoValido, telefonoValido, cedulaValido, tipoSangreValido, dirrecionValido, correoValido, ocupacionValida } from "../domain/validation/validation";
+import { codigoAndEdadNegativo, nombreApellidoAndCedulaValidator, fechaNoFutura, generoValido, telefonoValido,
+    cedulaValido, tipoSangreValido, dirrecionValido, correoValido, ocupacionValida } from "../domain/validation/validation";
 
 export class CasoUsoEditPaciente{
     constructor(private repositorio:IRepositorioPaciente){}
