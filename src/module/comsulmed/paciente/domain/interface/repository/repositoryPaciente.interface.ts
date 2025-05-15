@@ -4,15 +4,15 @@ import { Paciente } from "../paciente.interface"
 export interface IRepositorioPaciente{
     getAll():Promise<paciente[]>
     getOneById(id:number):Promise<paciente|null>
-    create(student:paciente):Promise<void>
-    edit(student:paciente):Promise<void>
+    create(paciente:paciente):Promise<void>
+    edit(paciente:paciente):Promise<void>
     delete(id:number):Promise<void>
 }
 
 export interface IRepositorioTestPaciente{
     getAll():Promise<Paciente[]>
     getOneById(id:number):Promise<Paciente|null>
-    create(student:Paciente):Promise<void>
-    edit(student:Paciente):Promise<void>
+    create(paciente:Paciente):Promise<void>
+    edit(paciente:Paciente):Promise<void>
     delete(id:number):Promise<void>
 }
