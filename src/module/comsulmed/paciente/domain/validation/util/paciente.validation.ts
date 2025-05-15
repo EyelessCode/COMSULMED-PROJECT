@@ -3,6 +3,8 @@ export class PacienteIdNegative extends Error{}
 export class PacienteNegativeNumber extends Error{}
 export class PacienteUnnamed extends Error{}
 export class PacienteAgeNegative extends Error{}
-export class PacienteDocument extends Error{}
-export class PacienteDate extends Error{}
-export class PacienteGenre extends Error{}
+export class PacienteInvalidDocument extends Error{}
+export class PacienteInvalidDate extends Error{}
+export class PacienteInvalidGenre extends Error{}
+export class PacienteInvalidBloodType extends Error{}
+export class PacienteInvalidAddress extends Error{}
