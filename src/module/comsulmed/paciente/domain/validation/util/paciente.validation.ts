@@ -8,3 +8,5 @@ export class PacienteInvalidDate extends Error{}
 export class PacienteInvalidGenre extends Error{}
 export class PacienteInvalidBloodType extends Error{}
 export class PacienteInvalidAddress extends Error{}
+export class PacienteInvalidEmail extends Error{}
+export class PacienteInvalidOccupation extends Error{}
